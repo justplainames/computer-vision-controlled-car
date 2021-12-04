@@ -156,13 +156,15 @@ const Timer_A_CompareModeConfig CCR4Config =
 void startWheels(void)
 {
     //PORT 5 for MOTOR OUTPUT
-    GPIO_setAsOutputPin(GPIO_PORT_P5, 0xf3);//11110011
+    GPIO_setAsOutputPin(GPIO_PORT_P5, 0xf3);//11110011 // 1= output, 0 = input
+        
     //MOTOR PWM PINS 5.5 = left, 5.6 = right
     GPIO_setOutputLowOnPin(GPIO_PORT_P5, 0x30);
-    //direction
+        
+    // Set direction for left/right motor
     // 5.0/5.6=1 & 5.1/5.7=0 = move foward
-    GPIO_setOutputHighOnPin(GPIO_PORT_P5, 0x41);//01000001
-    GPIO_setOutputLowOnPin(GPIO_PORT_P5, 0x82);//10000010
+    GPIO_setOutputHighOnPin(GPIO_PORT_P5, 0x41); //01000001
+    GPIO_setOutputLowOnPin(GPIO_PORT_P5, 0x82); //10000010
 }
 void motorLeftForward(){
     GPIO_setAsOutputPin(GPIO_PORT_P5, GPIO_PIN6);
