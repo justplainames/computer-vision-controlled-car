@@ -60,7 +60,7 @@ uint32_t leftTurnNotchMaxCount=35;
 bool turnLeft=0;
 bool turnRight=0;
 
-//Car Operation L = Left, R = Right, F = Forward, B = Backward , X = Stop
+//Car Operation L = Left, R = Right, F = Forward, X = Stop
 uint32_t carOperation = 'N';
 uint32_t carOperationNew = 'F';
 
@@ -234,7 +234,7 @@ void setCarDirection(){
         motorTurnRight();
     }
 
-    //else forward or backward
+    //else forward or Stop
     else{
         if (carOperationNew != carOperation){
             if(carOperationNew =='F')
@@ -442,12 +442,8 @@ void TA1_0_IRQHandler ( void )
 
     pidRightCounter = 0;
     pidLeftCounter = 0;
-
     }
-
-    Timer_A_clearCaptureCompareInterrupt (TIMER_A1_BASE ,
-                                                      TIMER_A_CAPTURECOMPARE_REGISTER_0 );
-
+    Timer_A_clearCaptureCompareInterrupt (TIMER_A1_BASE , TIMER_A_CAPTURECOMPARE_REGISTER_0 );
 }
 
 //Interrupt handler for PORT 1
@@ -470,10 +466,10 @@ void PORT1_IRQHandler(void)
             carOperationNew= 'F';
             turnLeft =0;       // Reset Right wheel counter once makes x round
         }
-        if(pidRCheck == 20){
+        if(pidRCheck == 20){//Toggle LED pin
             pidRCheck = 0;
                     GPIO_toggleOutputOnPin (GPIO_PORT_P2 , GPIO_PIN0);
-                }
+       }
 
     }
 
@@ -499,7 +495,7 @@ void PORT1_IRQHandler(void)
 }
 
 
-/* GPIO ISR for PORT 3 (the echo value) */
+/* GPIO ISR for PORT 3 (the echo value) ultrasonic */
 void PORT3_IRQHandler (void)
 {
     uint32_t status;
@@ -529,7 +525,6 @@ void EUSCIA0_IRQHandler(void)
             if(turnLeft ==0){
                 turnLeft=1;
             }
-
             carOperationNew='L';   //Update of car operation = Left
         break;
         case 'r':
@@ -540,7 +535,6 @@ void EUSCIA0_IRQHandler(void)
             if(turnRight ==0){
                 turnRight=1;
             }
-
             carOperationNew='R';   //Update of car operation = Right
         break;
         case 'w':
