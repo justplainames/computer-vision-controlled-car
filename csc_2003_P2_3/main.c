@@ -1,3 +1,30 @@
+/******************************************************************************
+ * MSP DriverLib CAR Project
+ *
+ *                MSP432P401
+ *             ------------------
+ *            |               1.0|------>Red LED
+ *            |               1.1|<------Test Functions S1
+ *            |               1.4|<------STOP/START wheels Function S2
+ *            |               1.6|<------Right Wheel Encoder
+ *            |               1.7|<------Left Wheel Encoder
+ *            |               2.0|------>Red LED
+ *            |               2.1|------>Green LED
+ *            |               2.2|------>Blue LED
+ *            |               2.4|------>Left Wheel PWM(ENB)
+ *            |               2.5|------>ULTRASONIC TRIG
+ *            |               2.6|------>Right Wheel PWM(ENA)
+ *            |               3.0|<------ULTRASONIC ECHO
+ *            |               5.0|------>Right Wheel Direction (IN1)
+ *            |               5.1|------>Right Wheel Direction (IN2)
+ *            |               5.6|------>Left Wheel Direction (IN4)
+ *            |               5.7|------>Left Wheel Direction (IN3)
+ *            |                  |
+ *            |              UART|<----->RasPi(BaudRate:9600, DataSize:8, Parity:None, StopBits:1) 
+ * Author:
+*******************************************************************************/
+
+
 /* DriverLib Includes */
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
