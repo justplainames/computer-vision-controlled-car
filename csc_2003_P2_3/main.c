@@ -42,6 +42,7 @@
 
 //Start pulse for ultrasonic sensor
 bool start_pulse=0;
+
 //Distance of obstacle from ultraSonicSensor
 float dist;
 
@@ -259,17 +260,15 @@ void setCarDirection(){
 
 //Set car speed from ultrasonic sensor
 void setCarSpeed(){
-
     if (dist<minDistFromObject && turnLeft != 1 && turnRight !=1){   //If distance < 10cm
             pidFlag = 0;
-
+        //Set Duty cycle for left/right motor
         pwmConfigLeftMotor.dutyCycle = 0;
         pwmConfigRightMotor.dutyCycle = 0;
-
-        Timer_A_generatePWM(TIMER_A0_BASE,
-                                &pwmConfigLeftMotor);
-        Timer_A_generatePWM(TIMER_A0_BASE,
-                                &pwmConfigRightMotor);
+        
+        //Re-generate PWM
+        Timer_A_generatePWM(TIMER_A0_BASE, &pwmConfigLeftMotor);
+        Timer_A_generatePWM(TIMER_A0_BASE, &pwmConfigRightMotor);
     }
     else{
         pidFlag = 1;
