@@ -6,7 +6,7 @@
 # - Establish Serial Connection with MSP432
 # - Passing data (direction L:LEFT R:RIGHT) to determine the car direction to MSP
 
-Completed by Dai Yu  and Jie Lin
+
 #################################################################################
 # IMPORT FOR OPENCV
 import cv2
